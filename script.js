@@ -606,6 +606,7 @@ let selectedId = "habit-loop";
 let activeFilter = "all";
 let searchTerm = "";
 let traceIndex = 0;
+let activeLens = "psychology";
 
 const edgeLayer = document.querySelector("#edgeLayer");
 const nodeLayer = document.querySelector("#nodeLayer");
@@ -842,11 +843,8 @@ function updateDetails(model) {
   document.querySelector(".detail-panel").dataset.group = model.group;
   document.querySelector(".practice-stack").dataset.group = model.group;
 
-  // Reset detail panel tab to Psychology
-  const btnPsych = document.getElementById("lens-psych");
-  if (btnPsych) {
-    btnPsych.click();
-  }
+  // Update detail panel lens state
+  updateLensView();
 
   // Populate Theology & Neurobiology stack
   if (model.integration) {
@@ -1009,23 +1007,35 @@ const btnTheo = document.getElementById("lens-theo");
 const practiceStack = document.getElementById("practice-stack");
 const integrationStack = document.getElementById("integration-stack");
 
-if (btnPsych && btnTheo) {
-  btnPsych.addEventListener("click", () => {
+function updateLensView() {
+  if (!btnPsych || !btnTheo || !practiceStack || !integrationStack) return;
+
+  if (activeLens === "psychology") {
     btnPsych.classList.add("is-active");
     btnPsych.setAttribute("aria-selected", "true");
     btnTheo.classList.remove("is-active");
     btnTheo.setAttribute("aria-selected", "false");
     practiceStack.style.display = "";
     integrationStack.style.display = "none";
-  });
-
-  btnTheo.addEventListener("click", () => {
+  } else {
     btnTheo.classList.add("is-active");
     btnTheo.setAttribute("aria-selected", "true");
     btnPsych.classList.remove("is-active");
     btnPsych.setAttribute("aria-selected", "false");
     practiceStack.style.display = "none";
     integrationStack.style.display = "";
+  }
+}
+
+if (btnPsych && btnTheo) {
+  btnPsych.addEventListener("click", () => {
+    activeLens = "psychology";
+    updateLensView();
+  });
+
+  btnTheo.addEventListener("click", () => {
+    activeLens = "theology";
+    updateLensView();
   });
 }
 
