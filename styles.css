@@ -1394,3 +1394,523 @@ h1 {
     animation-duration: 0.001ms !important;
   }
 }
+
+/* ==========================================================================
+   THEOLOGY & NEUROBIOLOGY INTEGRATION SECTION
+   ========================================================================== */
+.integration {
+  padding: 5rem 0 3rem;
+  border-top: 1px solid var(--ink);
+}
+
+.integration .wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.integration .eyebrow {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.integration h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0.5rem 0 1rem;
+}
+
+.integration .lede {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.45;
+  color: #3d3b36;
+}
+
+.integration .tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1rem;
+}
+
+.integration .tab-btn {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.integration .tab-btn:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.integration .tab-btn.active {
+  background: var(--paper-2);
+  border-color: var(--ink);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(17, 17, 15, 0.06);
+}
+
+.integration .tab-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.integration .tab-content.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Lens Grid */
+.integration .lens-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .integration .lens-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.integration .lens-card {
+  background: var(--paper-2);
+  border: 1px solid var(--ink);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.integration .lens-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.integration .lens-label svg {
+  width: 14px;
+  height: 14px;
+}
+
+.integration .lens-practice .lens-label { color: #8a6d3b; }
+.integration .lens-evidence .lens-label { color: #31708f; }
+.integration .lens-framework .lens-label { color: #a94442; }
+
+.integration .lens-card p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #3d3b36;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.integration .lens-card .cite {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Model visual box */
+.integration .model-visual-box {
+  margin-top: 2rem;
+  background: var(--paper-2);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.integration .model-visual-header h4 {
+  margin: 0 0 0.25rem;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.integration .model-visual-header p {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+/* Hinge SVG */
+.integration .visual-attention-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .integration .visual-attention-layout {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+.integration .visual-hinge-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.integration .hinge-btn {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.integration .hinge-btn:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.integration .hinge-btn.active {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.integration .visual-hinge-svg-container {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.integration .hinge-svg {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+}
+
+.integration .node-outer {
+  transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+.integration .node-inner {
+  transition: fill 0.3s ease, transform 0.3s ease;
+  transform-origin: center;
+}
+
+.integration .connection-line {
+  transition: stroke 0.3s ease, stroke-dasharray 0.3s ease, opacity 0.3s ease;
+  opacity: 0.25;
+}
+
+.integration .connection-line.active {
+  opacity: 1;
+}
+
+.integration .node-txt {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  fill: var(--muted);
+}
+
+.integration .brain-node.active .node-txt {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.integration .brain-node.active .node-outer {
+  stroke: var(--coral);
+}
+
+.integration .brain-node.active .node-inner {
+  fill: var(--coral);
+  transform: scale(1.2);
+}
+
+.integration .brain-node.active.tpn-node .node-outer {
+  stroke: var(--mint);
+}
+
+.integration .brain-node.active.tpn-node .node-inner {
+  fill: var(--mint);
+}
+
+.integration .visual-hinge-description {
+  grid-column: 1 / -1;
+  background: var(--paper-2);
+  border: 1px solid var(--ink);
+  border-left: 4px solid var(--coral);
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink);
+  transition: all 0.3s ease;
+}
+
+.integration .visual-hinge-description.tpn-state {
+  border-left-color: var(--mint);
+}
+
+/* Habit loops comparison */
+.integration .visual-habit-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .integration .visual-habit-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.integration .habit-loop-box {
+  background: var(--paper-2);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.integration .habit-loop-box h5 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.integration .habit-loop-box.hijacked {
+  border-left: 4px solid var(--coral);
+}
+
+.integration .habit-loop-box.liturgical {
+  border-left: 4px solid var(--mint);
+}
+
+.integration .loop-graphic-box {
+  display: flex;
+  justify-content: center;
+  background: var(--paper);
+  padding: 0.85rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.integration .mini-loop-svg {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+}
+
+.integration .habit-steps-list {
+  margin: 0;
+  padding: 0 0 0 1.2rem;
+  color: #3d3b36;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.integration .habit-steps-list li {
+  margin-bottom: 0.42rem;
+}
+
+/* Table styling */
+.integration .integration-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+}
+
+.integration .neuro-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+.integration .neuro-table th, 
+.integration .neuro-table td {
+  padding: 0.95rem 1.2rem;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.45;
+}
+
+.integration .neuro-table th {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--ink);
+}
+
+.integration .neuro-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.integration .align-row {
+  transition: all 0.2s ease;
+}
+
+.integration .align-row:hover {
+  background: var(--paper);
+}
+
+.integration .tbl-subtext {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Slider Layout */
+.integration .visual-slider-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  padding: 1.4rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  background: var(--paper-2);
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+.integration .slider-control-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.integration .slider-side-lbl {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex: none;
+}
+
+.integration .slider-side-lbl.threat {
+  color: var(--coral);
+}
+
+.integration .slider-side-lbl.rest {
+  color: var(--muted);
+  transition: color 0.35s ease;
+}
+
+.integration .spectrum-range-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.integration .spectrum-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--paper-2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.integration .spectrum-range-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--paper-2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.integration .slider-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .integration .slider-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.integration .metric-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.integration .metric-card .mini-heading {
+  margin-bottom: 0.35rem;
+}
+
+.integration .metric-val {
+  margin: 0 0 0.25rem;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.integration .metric-sub {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}

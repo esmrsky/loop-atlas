@@ -1046,3 +1046,136 @@ renderScenarios();
 renderMatrix();
 selectModel(selectedId);
 updateVisibility();
+
+// --- Theology & Neuroscience Integration Section Logic ---
+(function(){
+  // Tab switching inside the dedicated section
+  const tabs = document.querySelectorAll('#integration .tab-btn');
+  const contents = document.querySelectorAll('#integration .tab-content');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('aria-controls');
+      
+      // Update active tab button
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      
+      // Update active content
+      contents.forEach(content => {
+        content.classList.remove('active');
+      });
+      const targetContent = document.getElementById(targetId);
+      if(targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+
+  // Tab 1: Attention Hinge Toggle (DMN vs TPN)
+  const btnDmn = document.getElementById('hinge-dmn');
+  const btnTpn = document.getElementById('hinge-tpn');
+  const pathDmn = document.getElementById('path-dmn');
+  const pathTpn = document.getElementById('path-tpn');
+  const desc = document.getElementById('hinge-desc');
+  const nodeMpfc = document.getElementById('node-mpfc');
+  const nodePcc = document.getElementById('node-pcc');
+  const nodeDlpfc = document.getElementById('node-dlpfc');
+  const nodeInsula = document.getElementById('node-insula');
+
+  if(btnDmn && btnTpn) {
+    btnDmn.addEventListener('click', () => {
+      btnDmn.classList.add('active');
+      btnTpn.classList.remove('active');
+      
+      nodeMpfc.classList.add('active');
+      nodePcc.classList.add('active');
+      nodeDlpfc.classList.remove('active');
+      nodeDlpfc.querySelector('.node-outer').style.stroke = 'var(--line)';
+      nodeDlpfc.querySelector('.node-inner').style.fill = 'var(--muted)';
+      nodeInsula.classList.remove('active');
+      nodeInsula.querySelector('.node-outer').style.stroke = 'var(--line)';
+      nodeInsula.querySelector('.node-inner').style.fill = 'var(--muted)';
+      
+      pathDmn.classList.add('active');
+      pathTpn.classList.remove('active');
+      pathTpn.setAttribute('stroke-dasharray', '5 5');
+      
+      desc.innerHTML = "<strong>Narrative Rumination Loop Active:</strong> Energy moves continuously between the Medial Prefrontal Cortex (mPFC) and the Posterior Cingulate Cortex (PCC). The brain compiles histories, anticipates threats, and maintains self-defensive stories, generating cortisol.";
+      desc.classList.remove('tpn-state');
+    });
+
+    btnTpn.addEventListener('click', () => {
+      btnTpn.classList.add('active');
+      btnDmn.classList.remove('active');
+      
+      nodeMpfc.classList.remove('active');
+      nodePcc.classList.remove('active');
+      nodeDlpfc.classList.add('active');
+      nodeDlpfc.querySelector('.node-outer').style.stroke = 'var(--ink)';
+      nodeDlpfc.querySelector('.node-inner').style.fill = 'var(--ink)';
+      nodeInsula.classList.add('active');
+      nodeInsula.querySelector('.node-outer').style.stroke = 'var(--ink)';
+      nodeInsula.querySelector('.node-inner').style.fill = 'var(--ink)';
+      
+      pathDmn.classList.remove('active');
+      pathTpn.classList.add('active');
+      pathTpn.setAttribute('stroke-dasharray', '0');
+      
+      desc.innerHTML = "<strong>Task-Positive Network Re-coupled:</strong> Return to the sacred word recruits the dlPFC to decouple from PCC-mPFC rumination. Insula activation brings somatic awareness, quieting the Default Mode Network and allowing receptive rest in God.";
+      desc.classList.add('tpn-state');
+    });
+  }
+
+  // Tab 4: Sabbath Slider
+  const slider = document.getElementById('spectrum-slider');
+  const cardBox = document.getElementById('slider-card-box');
+  const valState = document.getElementById('val-state');
+  const valBrain = document.getElementById('val-brain');
+  const valFocus = document.getElementById('val-focus');
+  const valDrive = document.getElementById('val-drive');
+  const valOutcome = document.getElementById('val-outcome');
+  const valMyelin = document.getElementById('val-myelin');
+
+  if(slider) {
+    slider.addEventListener('input', () => {
+      const val = parseInt(slider.value);
+      
+      if(val < 30) {
+        valState.textContent = "Hyperactive Threat Loop";
+        valState.style.color = 'var(--coral)';
+        valBrain.textContent = "High Amygdala & Cortisol levels";
+        valFocus.textContent = "Control & Accumulation";
+        valDrive.textContent = "Dopamine seeking / hedonic chasing";
+        valOutcome.textContent = "Chronic Stiffening";
+        valMyelin.textContent = "Reinforcing fear-based superhighways";
+        cardBox.style.borderColor = 'var(--ink)';
+        cardBox.style.background = 'var(--paper)';
+      } else if (val < 70) {
+        valState.textContent = "Transition State (Ceasing)";
+        valState.style.color = 'var(--ink)';
+        valBrain.textContent = "Amygdala activity beginning to decay";
+        valFocus.textContent = "De-escalation / Unplugging";
+        valDrive.textContent = "Dopamine seeking declines";
+        valOutcome.textContent = "Perceived Safety Rising";
+        valMyelin.textContent = "Synapses transitioning to rest states";
+        cardBox.style.borderColor = 'var(--ink)';
+        cardBox.style.background = 'var(--paper)';
+      } else {
+        valState.textContent = "Sabbath Safety Circuit Active";
+        valState.style.color = 'var(--mint)';
+        valBrain.textContent = "Subcortical PLAY circuits active; low cortisol";
+        valFocus.textContent = "Relational Joy & Play (Eutrapelia)";
+        valDrive.textContent = "Endorphins & Oxytocin release";
+        valOutcome.textContent = "Neuroplastic Growth (BDNF)";
+        valMyelin.textContent = "Myelinating pathways of peace and attachment";
+        cardBox.style.borderColor = 'var(--mint)';
+        cardBox.style.background = 'color-mix(in srgb, var(--paper-2) 93%, rgba(24, 184, 135, 0.08))';
+      }
+    });
+  }
+})();
