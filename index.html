@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="An interactive reference atlas for psychological feedback loops, habit cycles, and motivation models."
+    >
+    <title>Loop Atlas</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23d7ff45'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%2311110f' stroke-width='4'/%3E%3Cpath d='M20 32h24M32 20v24' stroke='%2311110f' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Loop Atlas home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="16"></circle>
+            <path d="M12 20h16M20 12v16"></path>
+            <path d="M28 14c4 5 3 13-2 17"></path>
+          </svg>
+        </span>
+        <span>Loop Atlas</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#map">Map</a>
+        <a href="#library">Library</a>
+        <a href="#examples">Examples</a>
+        <a href="#matrix">Levers</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="atlas-shell" id="map" aria-labelledby="page-title">
+        <div class="intro-panel">
+          <p class="eyebrow">Psychology reference system</p>
+          <h1 id="page-title">Feedback loops for why people start, stop, repeat, and change.</h1>
+          <p class="lede">
+            A clean map of motivation models, habit cycles, and regulatory systems, arranged for pattern
+            recognition rather than memorization.
+          </p>
+
+          <form class="search-card" role="search">
+            <label for="searchInput">Search the atlas</label>
+            <div class="search-row">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m16 16 4 4"></path>
+              </svg>
+              <input id="searchInput" type="search" autocomplete="off" placeholder="cue, autonomy, reward, coping">
+            </div>
+          </form>
+
+          <div class="filter-wrap" aria-label="Model groups">
+            <button class="filter-chip is-active" type="button" data-filter="all">
+              <span class="chip-dot all"></span>
+              All systems
+            </button>
+            <button class="filter-chip" type="button" data-filter="Habit">
+              <span class="chip-dot habit"></span>
+              Habit
+            </button>
+            <button class="filter-chip" type="button" data-filter="Motivation">
+              <span class="chip-dot motivation"></span>
+              Motivation
+            </button>
+            <button class="filter-chip" type="button" data-filter="Feedback">
+              <span class="chip-dot feedback"></span>
+              Feedback
+            </button>
+            <button class="filter-chip" type="button" data-filter="Cognition">
+              <span class="chip-dot cognition"></span>
+              Cognition
+            </button>
+            <button class="filter-chip" type="button" data-filter="Social">
+              <span class="chip-dot social"></span>
+              Social
+            </button>
+          </div>
+
+          <div class="stat-strip" aria-label="Atlas statistics">
+            <div>
+              <strong id="visibleCount">14</strong>
+              <span>models</span>
+            </div>
+            <div>
+              <strong>05</strong>
+              <span>families</span>
+            </div>
+            <div>
+              <strong>54</strong>
+              <span>levers</span>
+            </div>
+          </div>
+        </div>
+
+        <section class="map-board" aria-label="Interactive model map">
+          <div class="board-toolbar">
+            <div>
+              <p class="tiny-label">System map</p>
+              <h2>Shared mechanisms</h2>
+            </div>
+            <div class="icon-actions" aria-label="Map actions">
+              <button class="icon-button" id="traceButton" type="button" aria-label="Trace related models" data-tooltip="Trace related models">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 12h9"></path>
+                  <path d="m10 8 4 4-4 4"></path>
+                  <path d="M20 5v5a6 6 0 0 1-6 6h-1"></path>
+                </svg>
+              </button>
+              <button class="icon-button" id="resetButton" type="button" aria-label="Reset selection" data-tooltip="Reset selection">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+                  <path d="M3 4v6h6"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="map-stage">
+            <svg id="loopMap" class="loop-map" viewBox="0 0 1120 760" role="img" aria-label="Clickable map of psychological models">
+              <defs>
+                <filter id="nodeShadow" x="-40%" y="-40%" width="180%" height="180%">
+                  <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#141414" flood-opacity=".12"></feDropShadow>
+                </filter>
+              </defs>
+              <g id="edgeLayer"></g>
+              <g id="nodeLayer"></g>
+            </svg>
+          </div>
+
+          <aside class="detail-panel" aria-live="polite">
+            <div class="detail-kicker">
+              <span id="detailGroupDot" class="group-dot"></span>
+              <span id="detailGroup">Habit</span>
+            </div>
+            <h2 id="detailTitle">Habit Loop</h2>
+            <p id="detailSummary"></p>
+            <div class="detail-meta" id="detailMeta" aria-label="Model metadata"></div>
+            <div class="loop-chain" id="detailChain" aria-label="Loop components"></div>
+            <div class="practice-stack" data-group="Habit">
+              <div class="practice-card is-primary">
+                <span class="mini-heading">Best for</span>
+                <p id="detailBestFor"></p>
+              </div>
+              <div class="practice-card">
+                <span class="mini-heading">Practical example</span>
+                <p id="detailSituation"></p>
+                <p id="detailExampleLoop"></p>
+              </div>
+              <div class="practice-card">
+                <span class="mini-heading">First move</span>
+                <p id="detailFirstMove"></p>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div>
+                <span class="mini-heading">Intervention levers</span>
+                <ul id="detailLevers"></ul>
+              </div>
+              <div>
+                <span class="mini-heading">Use with care</span>
+                <p id="detailCaution"></p>
+              </div>
+            </div>
+            <div class="related-panel">
+              <span class="mini-heading">Related models</span>
+              <div id="detailRelated" class="related-list"></div>
+            </div>
+          </aside>
+        </section>
+      </section>
+
+      <section class="library-section" id="library" aria-labelledby="library-title">
+        <div class="section-heading">
+          <p class="eyebrow">Reference library</p>
+          <h2 id="library-title">Models as lenses, not laws.</h2>
+          <p>
+            Each card isolates the smallest useful loop: input, interpretation, action, feedback, and
+            the environmental conditions that keep the cycle alive.
+          </p>
+        </div>
+        <div class="model-grid" id="modelGrid"></div>
+      </section>
+
+      <section class="examples-section" id="examples" aria-labelledby="examples-title">
+        <div class="section-heading">
+          <p class="eyebrow">Applied examples</p>
+          <h2 id="examples-title">Translate a messy loop into a first move.</h2>
+          <p>
+            Pick a common pattern to see which models clarify the loop, where the cycle is being
+            reinforced, and what to try before inventing a whole program.
+          </p>
+        </div>
+        <div class="scenario-layout">
+          <div class="scenario-rail" id="scenarioRail" aria-label="Example scenarios"></div>
+          <article class="scenario-panel" id="scenarioPanel" aria-live="polite">
+            <div>
+              <p class="tiny-label">Scenario</p>
+              <h3 id="scenarioTitle"></h3>
+              <p id="scenarioSetup"></p>
+            </div>
+            <div class="scenario-flow" id="scenarioFlow" aria-label="Scenario loop"></div>
+            <div class="scenario-columns">
+              <div>
+                <span class="mini-heading">Useful lenses</span>
+                <div class="scenario-models" id="scenarioModels"></div>
+              </div>
+              <div>
+                <span class="mini-heading">Try next</span>
+                <ul id="scenarioMoves"></ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="matrix-section" id="matrix" aria-labelledby="matrix-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Intervention matrix</p>
+          <h2 id="matrix-title">Choose the lever that matches the loop.</h2>
+        </div>
+        <div class="lever-matrix" id="leverMatrix"></div>
+      </section>
+
+      <section class="sources-section" aria-labelledby="sources-title">
+        <div>
+          <p class="eyebrow">Selected sources</p>
+          <h2 id="sources-title">Grounded in established frameworks.</h2>
+        </div>
+        <ul>
+          <li><a href="https://selfdeterminationtheory.org/theory/">Self-Determination Theory overview</a></li>
+          <li><a href="https://www.behaviourchangewheel.com/about-wheel">Behaviour Change Wheel and COM-B overview</a></li>
+          <li><a href="https://www.behaviormodel.org/">Fogg Behavior Model</a></li>
+          <li><a href="https://doi.org/10.1037/0033-295X.84.2.191">Self-efficacy and expectancy foundations</a></li>
+          <li><a href="https://doi.org/10.1177/001872675400700202">Social Comparison Theory</a></li>
+          <li><a href="https://doi.org/10.1037/0022-3514.68.3.518">Sociometer Theory</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <template id="modelCardTemplate">
+      <article class="model-card">
+        <button class="card-hit" type="button">
+          <span class="card-icon"></span>
+          <span class="card-group"></span>
+          <strong></strong>
+          <span class="card-summary"></span>
+          <span class="card-tags"></span>
+        </button>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
