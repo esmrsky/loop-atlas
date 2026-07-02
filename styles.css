@@ -660,6 +660,59 @@ h1 {
   content: "→";
 }
 
+.lens-selector {
+  display: inline-flex;
+  gap: 4px;
+  background: rgba(17, 17, 15, 0.05);
+  padding: 3px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  margin: 1.25rem 0;
+}
+
+.lens-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.18s ease;
+}
+
+.lens-btn:hover {
+  color: var(--ink);
+}
+
+.lens-btn.is-active {
+  background: var(--paper-2);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(17, 17, 15, 0.06);
+}
+
+.integration-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.integration-stack .practice-card.is-primary {
+  grid-column: 1 / -1;
+  border-left: 4px solid var(--coral);
+}
+
+.integration-stack .practice-card:last-child {
+  grid-column: 1 / -1;
+  border-left: 4px solid var(--mint);
+}
+
 .practice-stack {
   display: grid;
   grid-template-columns: 0.82fr 1.18fr 0.9fr;
@@ -1203,6 +1256,7 @@ h1 {
 
   .detail-grid,
   .practice-stack,
+  .integration-stack,
   .section-heading,
   .scenario-columns,
   .scenario-layout,

@@ -142,7 +142,32 @@
             <p id="detailSummary"></p>
             <div class="detail-meta" id="detailMeta" aria-label="Model metadata"></div>
             <div class="loop-chain" id="detailChain" aria-label="Loop components"></div>
-            <div class="practice-stack" data-group="Habit">
+
+            <div class="lens-selector" role="tablist" aria-label="Analysis Lens">
+              <button class="lens-btn is-active" id="lens-psych" type="button" role="tab" aria-selected="true" aria-controls="practice-stack">Psychology</button>
+              <button class="lens-btn" id="lens-theo" type="button" role="tab" aria-selected="false" aria-controls="integration-stack">Theology &amp; Neuro</button>
+            </div>
+
+            <div class="integration-stack" id="integration-stack" style="display: none;">
+              <div class="practice-card is-primary" style="border-left-color: var(--coral);">
+                <span class="mini-heading">Spiritual Telos</span>
+                <p id="detailTelos" style="font-weight: 600;"></p>
+              </div>
+              <div class="practice-card">
+                <span class="mini-heading">Biological Substrate</span>
+                <p id="detailSubstrate" style="font-family: var(--mono); font-size: 0.85rem; color: var(--muted);"></p>
+              </div>
+              <div class="practice-card">
+                <span class="mini-heading">Theological Integration</span>
+                <p id="detailTheology"></p>
+              </div>
+              <div class="practice-card">
+                <span class="mini-heading">Contemplative Practice</span>
+                <p id="detailPractice" style="border-left-color: var(--mint);"></p>
+              </div>
+            </div>
+
+            <div class="practice-stack" id="practice-stack" data-group="Habit">
               <div class="practice-card is-primary">
                 <span class="mini-heading">Best for</span>
                 <p id="detailBestFor"></p>

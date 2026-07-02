@@ -576,6 +576,30 @@ const scenarios = [
       "Add belonging cues that are not tied to rank.",
     ],
   },
+  {
+    id: "restless-longing",
+    title: "Restless Dopamine Loop",
+    setup: "Trying to satisfy an infinite need for purpose using finite digital metrics, resulting in constant striving.",
+    flow: ["Existential void", "Novelty prompt", "Compulsive chase", "Adaptation", "Deep restlessness"],
+    models: ["self-determination", "reinforcement", "sociometer", "expectancy-value"],
+    moves: [
+      "Realize finite rewards trigger hedonic adaptation; redirect desires to transcendent values.",
+      "Remove immediate prompts of digital feedback to let dopamine baselines recover.",
+      "Cultivate intrinsic meaning through vocation and non-utility rest (Sabbath)."
+    ]
+  },
+  {
+    id: "rumination-spiral",
+    title: "The Rumination Spiral",
+    setup: "Spiraling in anxiety, turning self-examination into a self-focused threat loop.",
+    flow: ["External trigger", "DMN hyperactivity", "Anxious self-talk", "Amygdala arousal", "Increased threat"],
+    models: ["cbt-loop", "control-theory", "emotion-regulation"],
+    moves: [
+      "Quieten the Default Mode Network using a silent present-moment attentional anchor (vow or word).",
+      "Re-calibrate your reference goals toward grace rather than absolute control.",
+      "Practice an examen centered on gratitude to shift subcortical circuits toward peace."
+    ]
+  }
 ];
 
 let selectedId = "habit-loop";
@@ -817,6 +841,25 @@ function updateDetails(model) {
   });
   document.querySelector(".detail-panel").dataset.group = model.group;
   document.querySelector(".practice-stack").dataset.group = model.group;
+
+  // Reset detail panel tab to Psychology
+  const btnPsych = document.getElementById("lens-psych");
+  if (btnPsych) {
+    btnPsych.click();
+  }
+
+  // Populate Theology & Neurobiology stack
+  if (model.integration) {
+    document.getElementById("detailTelos").textContent = model.integration.telos;
+    document.getElementById("detailSubstrate").textContent = model.integration.substrate;
+    document.getElementById("detailTheology").textContent = model.integration.theology;
+    document.getElementById("detailPractice").textContent = model.integration.practice;
+  } else {
+    document.getElementById("detailTelos").textContent = "N/A";
+    document.getElementById("detailSubstrate").textContent = "General cortical/subcortical networks";
+    document.getElementById("detailTheology").textContent = "This loop represents general cognitive-behavioral dynamics that support self-monitoring and value alignment in daily life.";
+    document.getElementById("detailPractice").textContent = "Integrate standard cognitive restructuring and present-moment awareness.";
+  }
 }
 
 function selectScenario(id) {
@@ -906,6 +949,85 @@ searchInput.addEventListener("input", (event) => {
 
 document.querySelector("#traceButton").addEventListener("click", traceNextRelated);
 document.querySelector("#resetButton").addEventListener("click", resetAtlas);
+
+// Theology & Neurobiology Integration Data
+const integrationData = {
+  "habit-loop": {
+    telos: "Embodied Liturgy",
+    substrate: "Dorsal Striatum (DMS to DLS transition) & Task-Bracketing",
+    theology: "James K.A. Smith's 'Desiring the Kingdom': we are shaped not by what we think, but by what we repeatedly do. Liturgies are secular or sacred routines that capture our heart's ultimate desire at an automated, bodily level.",
+    practice: "Liturgical Re-anchoring: Place a physical reminder of prayer (Bible, icon, cross) directly on top of your physical cue (laptop or pillow) to interrupt the default loop."
+  },
+  "cbt-loop": {
+    telos: "Apophatic Stillness",
+    substrate: "Default Mode Network (mPFC, PCC) vs. Task-Positive Network (dlPFC)",
+    theology: "The Cloud of Unknowing: a spiritual path of letting go of mental images, thoughts, and cognitive constructs (apophasis) to rest in the divine presence beyond thought.",
+    practice: "Centering Prayer: Silently repeating a single sacred word (e.g., 'Peace') to shift attention from the narrative self (DMN) to present-moment receptivity (TPN)."
+  },
+  "control-theory": {
+    telos: "Ignatian Discernment",
+    substrate: "dlPFC Comparator & Medial Prefrontal Self-Referentiality",
+    theology: "The Ignatian Examen: a structured method of daily prayerful review. It allows the practitioner to monitor thoughts, emotions, and bodily reactions in the light of gospel values.",
+    practice: "Daily Examen: Step-by-step audit of the day: 1. Gratitude, 2. Petition, 3. Review of actions, 4. Reconciliation, 5. Look forward with resolve."
+  },
+  "self-determination": {
+    telos: "The Restless Heart",
+    substrate: "Mesolimbic Dopamine SEEKING System (VTA -> NAcc)",
+    theology: "Augustinian longing: human hearts are hardwired with an infinite desire that cannot be satisfied by finite things. Worldly pleasures provide temporary dopaminergic rewards but leave the heart restless.",
+    practice: "Sacred Desire Realignment: When noticing a craving for status or control, pause and pray: 'O Lord, my heart is restless until it rests in you,' redirecting the SEEKING system."
+  },
+  "expectancy-value": {
+    telos: "Consolation and Desolation",
+    substrate: "Dopamine-driven reward expectation & Serotonergic mood modulation",
+    theology: "St. Ignatius's Discernment of Spirits: tracking states of spiritual consolidation (increases in hope, love, and energy) and desolation (tepidity, anxiety, and a drift toward low, earthly things).",
+    practice: "Discernment Review: Audit your commitments. Are actions driven by desolation (anxious striving, low expectancy of meaning) or consolation (peaceful value-alignment)?"
+  },
+  "fogg": {
+    telos: "Sabbath Rest",
+    substrate: "HPA Axis Cortisol Regulation & Subcortical PLAY Pathways",
+    theology: "Heschel's 'The Sabbath': a temporal sanctuary. By commanding the cessation of production, the Sabbath acts as a physical barrier that prevents work-related prompts.",
+    practice: "Sabbath Rest: Choose a 24-hour window where computers, email, and task-management tools are physically locked away, forcing the body out of work-related threat loops."
+  },
+  "emotion-regulation": {
+    telos: "Communal Co-regulation",
+    substrate: "Vagal nerve activation, oxytocin, and endogenous endorphins",
+    theology: "Liturgical feast and Eucharistic worship: communal gatherings that replace isolation and threat with shared song, sacred food, and visual beauty, fostering trust and safety in the presence of God.",
+    practice: "Eucharistic Rest: Schedule a weekly non-productive dinner or shared liturgy designed solely for gratitude, relationship, and safety, quieting bodily survival systems."
+  }
+};
+
+// Map integration data to models
+models.forEach(model => {
+  if (integrationData[model.id]) {
+    model.integration = integrationData[model.id];
+  }
+});
+
+// Lens tab button event listeners
+const btnPsych = document.getElementById("lens-psych");
+const btnTheo = document.getElementById("lens-theo");
+const practiceStack = document.getElementById("practice-stack");
+const integrationStack = document.getElementById("integration-stack");
+
+if (btnPsych && btnTheo) {
+  btnPsych.addEventListener("click", () => {
+    btnPsych.classList.add("is-active");
+    btnPsych.setAttribute("aria-selected", "true");
+    btnTheo.classList.remove("is-active");
+    btnTheo.setAttribute("aria-selected", "false");
+    practiceStack.style.display = "";
+    integrationStack.style.display = "none";
+  });
+
+  btnTheo.addEventListener("click", () => {
+    btnTheo.classList.add("is-active");
+    btnTheo.setAttribute("aria-selected", "true");
+    btnPsych.classList.remove("is-active");
+    btnPsych.setAttribute("aria-selected", "false");
+    practiceStack.style.display = "none";
+    integrationStack.style.display = "";
+  });
+}
 
 renderEdges();
 renderNodes();
